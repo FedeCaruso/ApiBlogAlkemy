@@ -1,0 +1,21 @@
+
+<nav th:fragment="nav-bar" class="navbar navbar-light" style="background-color: #64dd17;">
+        <div class="container">
+            <a th:href="@{/}" class="d-flex navbar-brand align-items-center mb-2 mb-lg-0 text-decoration-none">
+                <h2>Blog</h2>
+            </a>
+            <div sec:authorize="isAuthenticated()" class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="/img/BlogIcon.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" th:href="@{/post/form}">Nuevo Post</a></li>
+                    <li><a class="dropdown-item" th:href="@{/post/list}">Ir al feed gral.</a></li>
+<!--                    <li><a class="dropdown-item" th:href="@{/movies/form}">Nueva Película</a></li>
+                    <li><a class="dropdown-item" th:href="@{/movies/list}">Lista de Películas</a></li>-->
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>

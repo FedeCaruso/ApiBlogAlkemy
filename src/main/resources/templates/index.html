@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="/fragments/head :: head">
+    </head>
+    <body class="bg-secondary">
+        <nav th:replace="/fragments/nav-bar :: nav-bar"></nav>
+        <header th:replace="/fragments/header :: header">
+
+        </header>
+
+        <div>
+
+            <main class="container">
+
+<!--                button login
+                sec:authorize="!isAuthenticated()" -->
+                <div class="d-flex justify-content-center">
+                    <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/register}" class="btn btn-warning m-2">
+                        Registrarse 
+                    </a>
+                    <button type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">Log in</button>
+                    <!-- Modal login -->
+                </div>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                                    <label for="username">Username</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+                                <hr class="my-4">
+                                <small class="text-muted">Al iniciar sesión, aceptas terminos y condiciones.</small>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- fin Modal login -->
+
+                <div sec:authorize="isAuthenticated()" class="card mt-5 shadow-lg p-2" style="background-color: #64dd17;">
+                    <div class="d-flex justify-content-center m-3">
+                        <h5>Postea lo que quieras!</h5>
+                    </div>
+                    <div class="d-flex inline-block justify-content-center">
+                        <div class="m-3">
+                            <h5>Creación</h5>
+                            <a class="dropdown-item" th:href="@{/post/form}">Nuevo Post</a>
+<!--                            <a class="dropdown-item" th:href="@{/movies/form}">Nueva Película</a>-->
+                        </div>
+                        <div class="m-3">
+                            <h5>Listas</h5>
+                            <a class="dropdown-item" th:href="@{/post/list}">Feed Gral</a>
+<!--                            <a class="dropdown-item" th:href="@{/movies/list}">Lista de Películas</a>-->
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+                integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+                integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+        crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head"></head>
+
+    <body class="bg-secondary">
+        <!--<nav th:replace="/fragments/nav-bar :: nav-bar"></nav>
+        <header th:replace="/fragments/header :: header"></header>-->
+        <div class="container">
+            <div class="card mt-5" style="background-color: #64dd17;">
+                <div class="card-header d-flex">
+                    <h3>Crear post</h3>
+                    <a class="btn btn-dark ms-auto" th:href="@{/post/list}">Feed gral.</a>
+                </div>
+                <div class="card container" style="background-color: #64dd17;">
+                    <form th:action="@{/post/save}" method="POST" th:object="${post}" enctype="multipart/form-data" class="cart">
+                        <div>
+                            <input type="hidden" th:value="*{id}" name="id">
+                        </div>
+                        <br>
+                        <div>
+                            <input type="hidden" th:value="${action}" name="action">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="title" class="form-label"><strong>Título</strong></label>
+                                <input type="text" class="form-control" th:field="*{title}">
+                            </div>
+
+                            <!--                            <div class="col-md-6">
+                                                            <label for="content" class="form-label"><strong>Content</strong></label>
+                                                            <input type="text" class="form-control" th:field="*{content}">
+                                                        </div>-->
+
+                        </div>
+                        <div class="col-md-12 mt-3 mb-3">
+                            <label for="content" class="form-label"><strong>Contenido</strong></label>
+                            <textarea class="form-control" th:field="*{content}" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <label class="form-label "><strong>Picture/Image</strong></label>
+                            <input type="file" name="file" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 mt-3 mb-3">
+                            <label class="form-label "><Strong>Categoría</strong></label>
+                            <select class="form-select" th:field="${post.category}" name="idCategory">
+                                <option th:each="c : ${categories}" th:text="${c}" th:value="${c}"></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-dark ms-auto mt-5">Guardar</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+                integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+                integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html> 
